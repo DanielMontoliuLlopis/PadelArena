@@ -1,6 +1,6 @@
 # padel_arena
 
-Padel Arena es una aplicacion desarrollada con Flutter, su principal objetivo es centralizar las inscripcciones a los torneos de padel.
+Pádel Arena es una aplicación multiplataforma desarrollada en flutter y basada en la metodología TDD (Test-Driven Development), permitirá a los usuarios apuntarse a torneos de pádel de una forma centralizada. 
 
 # Instalación: 
 
