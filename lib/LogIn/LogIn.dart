@@ -12,41 +12,56 @@ class LogIn extends StatefulWidget{
 class _LogInState extends State<LogIn>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+
+      home:Scaffold(
+        appBar: AppBar(
+          title: const Text("Saludos"),
+      ),
         body: Container(
           child:
            Column(children:  [
+            const SizedBox(
+              height: 80,
+            ),
               const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Username',
+                  labelText: 'Username',
                 ),
+              ),
+              const SizedBox(
+              height: 40,
               ),
               const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Password',
+                  labelText: 'Password',
 
                 ),
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
               ),
+
+              const SizedBox(
+              height: 40,
+              ),
               InkWell(
               onTap: () {
                 
               },
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 48),
-                height: Get.height * 0.075,
-                width: Get.width,
-                decoration: BoxDecoration(
-                  color: Colors.purple,
-                  borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 30),
+                  height: 70,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Center(
+                child:const  Center(
                   child: Text(
-                    "Login / Registration",
+                    "Login",
                     style: TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Colors.white,
@@ -54,27 +69,32 @@ class _LogInState extends State<LogIn>{
                     ),
                   ),
                 ),
+                ),
               ),
-              ),
-              InkWell(  onTap: () {
+
+              InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LogIn()));
               },
               child: Container(
-                margin: const EdgeInsets.only(bottom: 48),
-                height: Get.height * 0.075,
+                margin: const EdgeInsets.only(bottom: 30),
+                height: Get.height * 0.035,
                 width: Get.width,
                 child: const Center(
                   child: Text(
-                    "LogIn",
+                    "SingUp",
                     style: TextStyle(
                       fontFamily: "HappyMonkey",
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: Color.fromARGB(255, 100, 99, 99),
                       fontSize: 18,
                     ),
                   ),
                 ),
-              ),)
+              ),
+            ), 
           ],)
         ),
+    )
     );
   }
 

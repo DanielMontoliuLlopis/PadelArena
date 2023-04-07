@@ -6,6 +6,14 @@ import 'OnBoarding/OnBoarding.dart';
 void main() async{
   await Future.delayed(Duration(seconds: 2));
   FlutterNativeSplash.remove();
-  runApp(new OnBoardingScreen());
+  runApp(MyApp() );
 }
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: OnBoardingScreen()
+    );
+  }
+}

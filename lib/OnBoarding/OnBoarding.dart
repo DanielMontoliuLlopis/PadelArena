@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:padel_arena/LogIn/LogIn.dart';
 
 
 import 'OnBoardingModel.dart';
@@ -17,7 +18,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   // Variables
   late PageController _pageController;
   int _pageIndex = 0;
-  Timer? _timer;
+
 
   @override
   void initState() {
@@ -29,17 +30,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   void dispose() {
     _pageController.dispose();
-    _timer!.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       home:Scaffold( 
+    
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        // Background gradient
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -94,10 +95,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             const SizedBox(
               height: 16,
             ),
-            // Button area
             _pageIndex==3? InkWell(
               onTap: () {
-                print("Button clicked!");
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LogIn()));
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 48),
