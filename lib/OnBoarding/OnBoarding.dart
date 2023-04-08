@@ -97,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
             _pageIndex==3? InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LogIn()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LogIn()));
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 48),

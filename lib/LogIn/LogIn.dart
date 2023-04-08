@@ -1,5 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:padel_arena/HomePage/HomePage.dart';
+import 'package:padel_arena/main.dart';
 
 class LogIn extends StatefulWidget{
   @override
@@ -10,6 +15,11 @@ class LogIn extends StatefulWidget{
 }
 
 class _LogInState extends State<LogIn>{
+  final emailController=TextEditingController();
+  final passController=TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,17 +34,19 @@ class _LogInState extends State<LogIn>{
             const SizedBox(
               height: 80,
             ),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Username',
+                  labelText: 'Email',
                 ),
               ),
               const SizedBox(
               height: 40,
               ),
-              const TextField(
-                decoration: InputDecoration(
+               TextField(
+                controller: passController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
 
@@ -49,7 +61,7 @@ class _LogInState extends State<LogIn>{
               ),
               InkWell(
               onTap: () {
-                
+                logIn();
               },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 30),
@@ -96,6 +108,24 @@ class _LogInState extends State<LogIn>{
         ),
     )
     );
+  }
+
+  Future logIn() async{
+    print(passController.text.trim());
+    showDialog(context: context, builder: (context)=>
+      Center(child: CircularProgressIndicator())
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(), 
+        password: passController.text.trim(),
+      );
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomePage()));
+    } on FirebaseAuthException catch  (e) {
+       print('Failed with error code: ${e.code}');
+        print(e.message);
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
 }

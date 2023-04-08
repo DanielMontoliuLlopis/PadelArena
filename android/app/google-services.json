@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "395043461043",
+    "project_id": "padel-arena-5b4cb",
+    "storage_bucket": "padel-arena-5b4cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395043461043:android:3f18929cd40982ca27ddc6",
+        "android_client_info": {
+          "package_name": "com.example.padel_arena"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395043461043-4sdvkj0kdr91siqrevjgjri3r5mn15g5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWlFB2y_VJY9d3OlJtLNdcEQrZOp0ktOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395043461043-4sdvkj0kdr91siqrevjgjri3r5mn15g5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
