@@ -113,7 +113,8 @@ class _LogInState extends State<LogIn>{
   Future logIn() async{
     print(passController.text.trim());
     showDialog(context: context, builder: (context)=>
-      Center(child: CircularProgressIndicator())
+      const Center(child: CircularProgressIndicator()), 
+      barrierDismissible: false,
     );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -124,8 +125,9 @@ class _LogInState extends State<LogIn>{
     } on FirebaseAuthException catch  (e) {
        print('Failed with error code: ${e.code}');
         print(e.message);
+        navigatorKey.currentState!.popUntil((route) => route.isFirst);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    
   }
 
 }
