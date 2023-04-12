@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:padel_arena/HomePage/HomePage.dart';
+import 'package:padel_arena/SingUp/SingUp.dart';
 import 'package:padel_arena/main.dart';
 
 class LogIn extends StatefulWidget{
@@ -86,7 +87,7 @@ class _LogInState extends State<LogIn>{
 
               InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LogIn()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SingUp() ));
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 30),
@@ -111,7 +112,6 @@ class _LogInState extends State<LogIn>{
   }
 
   Future logIn() async{
-    print(passController.text.trim());
     showDialog(context: context, builder: (context)=>
       const Center(child: CircularProgressIndicator()), 
       barrierDismissible: false,
