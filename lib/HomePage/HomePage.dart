@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:padel_arena/Tournaments/TournamentsList.dart';
+import 'package:padel_arena/profile/Profile.dart';
 
-class HomePage extends StatelessWidget{
+
+class HomePage extends StatefulWidget{
+  const HomePage({super.key});
+
+  @override
+  _HomePage createState()=>_HomePage();
+}
+
+class _HomePage extends State<HomePage>{
+  int _selectedIndex=0;
+  final List <Widget> _options= <Widget>[
+      TournamentsList(),
+      Profile(),
+  ];
+  void _onItemTap(int index){
+      setState((){
+        _selectedIndex=index;
+      });
+  }
   @override
   Widget build(BuildContext context) {
     return (
-      const Scaffold(
-        body: Center(child: Text("Loged")),
+       Scaffold(
+        body: _options.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[BottomNavigationBarItem(icon: Icon(Icons.warning_amber_sharp), label: "Tournaments"),
+                  BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Profile")
+          ],
+          onTap: _onItemTap,
+          currentIndex: _selectedIndex,
+        ),
         )
     );
   }
