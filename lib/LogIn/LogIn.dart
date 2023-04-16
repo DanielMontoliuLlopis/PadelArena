@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:padel_arena/HomePage/HomePage.dart';
 import 'package:padel_arena/SingUp/SingUp.dart';
 import 'package:padel_arena/main.dart';
@@ -18,8 +19,7 @@ class LogIn extends StatefulWidget{
 class _LogInState extends State<LogIn>{
   final emailController=TextEditingController();
   final passController=TextEditingController();
-
-
+  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +29,29 @@ class _LogInState extends State<LogIn>{
         appBar: AppBar(
           title: const Text("Saludos"),
       ),
-        body: Container(
+        body: Form(
+          key: _formKey,
           child:
            Column(children:  [
             const SizedBox(
               height: 80,
             ),
-              TextField(
+              TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
                 ),
+                validator: (String? input){
+                  if(!input!.contains('@')){
+                      return "Invalid email";
+                  }
+                }
               ),
               const SizedBox(
               height: 40,
               ),
-               TextField(
+               TextFormField(
                 controller: passController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -55,6 +61,11 @@ class _LogInState extends State<LogIn>{
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
+                validator: (String? input){
+                  if(input!.length<6){
+                      return "Invalid password";
+                  }
+                }
               ),
 
               const SizedBox(
@@ -62,7 +73,9 @@ class _LogInState extends State<LogIn>{
               ),
               InkWell(
               onTap: () {
-                logIn();
+                if(_formKey.currentState!.validate()){
+                    logIn();
+                }
               },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 30),
@@ -87,7 +100,7 @@ class _LogInState extends State<LogIn>{
 
               InkWell(
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SingUp() ));
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => SingUp() ), ((route) => false));
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 30),
@@ -112,6 +125,7 @@ class _LogInState extends State<LogIn>{
   }
 
   Future logIn() async{
+    FocusScope.of(context).unfocus();
     showDialog(context: context, builder: (context)=>
       const Center(child: CircularProgressIndicator()), 
       barrierDismissible: false,
@@ -121,10 +135,8 @@ class _LogInState extends State<LogIn>{
         email: emailController.text.trim(), 
         password: passController.text.trim(),
       );
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomePage()));
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage() ), ((route) => false));
     } on FirebaseAuthException catch  (e) {
-       print('Failed with error code: ${e.code}');
-        print(e.message);
         navigatorKey.currentState!.popUntil((route) => route.isFirst);
     }
     

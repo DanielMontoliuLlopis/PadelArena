@@ -6,25 +6,25 @@ import 'package:padel_arena/LogIn/LogIn.dart';
 import 'package:padel_arena/SingUp/GetMoreUserData.dart';
 import 'package:padel_arena/main.dart';
 
-class SingUp extends StatefulWidget {
+class GetExtraData extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SingUpState();
+    return _GetExtraData();
   }
 }
 
-class _SingUpState extends State<SingUp> {
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
-  final passRepeatedController = TextEditingController();
+class _GetExtraData extends State<GetExtraData> {
+  final userController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  bool isChecked=false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text("Saludos"),
+        title: const Text("Extra User Data"),
       ),
       body: Form(
           key: _formKey,
@@ -34,14 +34,14 @@ class _SingUpState extends State<SingUp> {
                 height: 80,
               ),
               TextFormField(
-                controller: emailController,
+                controller: userController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Email',
+                  labelText: 'UserName',
                 ),
                 validator: (String? input) {
-                  if (!input!.contains('@')) {
-                    return "Invalid email";
+                  if (false) {
+                    return "Not availabel user";
                   }
                 },
               ),
@@ -49,17 +49,14 @@ class _SingUpState extends State<SingUp> {
                 height: 40,
               ),
               TextFormField(
-                controller: passController,
+                controller: firstNameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Password',
+                  labelText: 'First Name',
                 ),
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
                 validator: (String? input){
-                  if(input!.length<6){
-                      return "Invalid password";
+                  if(input!.isEmpty){
+                      return "Can not be empty";
                   }
                 }
               ),
@@ -67,19 +64,30 @@ class _SingUpState extends State<SingUp> {
                 height: 40,
               ),
               TextFormField(
-                controller: passRepeatedController,
+                controller: lastNameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Repeat your password',
+                  labelText: 'Last Name',
                 ),
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 validator: (String? input){
-                  if(input!=passController.text.trim()){
-                      return "Diferent password";
+                  if(input!.isEmpty){
+                      return "Can not be empty";
                   }
                 }
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Row(
+                children: [
+                  Checkbox(value: isChecked , onChanged:(value)=>{
+                    setState(() => isChecked=value!,)
+                  }),
+                  const Text("Do you want to publish tournaments?")
+                ],
               ),
               const SizedBox(
                 height: 40,
@@ -87,7 +95,7 @@ class _SingUpState extends State<SingUp> {
               InkWell(
                 onTap: () {
                   if(_formKey.currentState!.validate()){
-                    singUp();
+                    pushDataAndGoToHomePage();
                   }
                 },
                 child: Container(
@@ -100,32 +108,10 @@ class _SingUpState extends State<SingUp> {
                   ),
                   child: const Center(
                     child: Text(
-                      "SingUp",
+                      "Continue",
                       style: TextStyle(
                         fontFamily: "HappyMonkey",
                         color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LogIn()),
-                      ((route) => false));
-                },
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 30),
-                  height: Get.height * 0.035,
-                  width: Get.width,
-                  child: const Center(
-                    child: Text(
-                      "You have account? Log In",
-                      style: TextStyle(
-                        fontFamily: "HappyMonkey",
-                        color: Color.fromARGB(255, 100, 99, 99),
                         fontSize: 18,
                       ),
                     ),
@@ -136,25 +122,7 @@ class _SingUpState extends State<SingUp> {
           )),
     ));
   }
+  pushDataAndGoToHomePage(){
 
-  Future singUp() async {
-    showDialog(
-      context: context,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-      barrierDismissible: false,
-    );
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passController.text.trim(),
-        );
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => GetExtraData()),
-            ((route) => false));
-      } on FirebaseAuthException catch (e) {
-        print('Failed with error code: ${e.code}');
-        print(e.message);
-        navigatorKey.currentState!.popUntil((route) => route.isFirst);
-      }
   }
 }
