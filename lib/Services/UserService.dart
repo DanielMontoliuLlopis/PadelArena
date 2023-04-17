@@ -4,6 +4,6 @@ import 'package:padel_arena/Model/UserData.dart';
 
 class UserService{
   saveUser(UserData user){
-    FirebaseDatabase.instance.ref().child('Users').push().set(user.toMap());
+    FirebaseDatabase.instanceFor(app:Firebase.app(), databaseURL: "https://padel-arena-5b4cb-default-rtdb.europe-west1.firebasedatabase.app" ).ref().child('Users').push().set(user.toMap());
   }
 }

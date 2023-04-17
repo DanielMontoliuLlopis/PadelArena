@@ -17,6 +17,7 @@ void main() async{
   FlutterNativeSplash.remove();
   runApp(MyApp() );
 }
+String? email="";
 final navigatorKey=GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   @override
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder:  (context, snapshot){ 
         if(snapshot.hasData){
+          email=snapshot.data!.email;
           return HomePage();
         }else{
           return const OnBoardingScreen();

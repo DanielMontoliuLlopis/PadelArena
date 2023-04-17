@@ -6,7 +6,7 @@ import 'package:padel_arena/LogIn/LogIn.dart';
 
 import 'OnBoardingModel.dart';
 
-// OnBoardingScreen
+
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
@@ -15,7 +15,6 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  // Variables
   late PageController _pageController;
   int _pageIndex = 0;
 

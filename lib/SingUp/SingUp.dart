@@ -148,6 +148,7 @@ class _SingUpState extends State<SingUp> {
           email: emailController.text.trim(),
           password: passController.text.trim(),
         );
+        email=emailController.text.trim();
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => GetExtraData()),
             ((route) => false));
