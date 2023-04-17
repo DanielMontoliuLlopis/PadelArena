@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:padel_arena/Model/UserData.dart';
+import 'package:padel_arena/Services/UserService.dart';
 import 'package:padel_arena/firebase_options.dart';
 import 'OnBoarding/OnBoarding.dart';
 import "HomePage/HomePage.dart";
@@ -15,10 +17,13 @@ void main() async{
   );
   await Future.delayed( const Duration(seconds: 2));
   FlutterNativeSplash.remove();
+  
   runApp(MyApp() );
 }
 String? email="";
+late UserData userData;
 final navigatorKey=GlobalKey<NavigatorState>();
+UserService cosa=UserService();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,7 @@ class MyApp extends StatelessWidget {
         builder:  (context, snapshot){ 
         if(snapshot.hasData){
           email=snapshot.data!.email;
+          print(UserService().prueba());
           return HomePage();
         }else{
           return const OnBoardingScreen();

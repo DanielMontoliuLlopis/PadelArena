@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:padel_arena/Services/UserService.dart';
 import 'package:padel_arena/Tournaments/TournamentsList.dart';
+import 'package:padel_arena/main.dart';
 import 'package:padel_arena/profile/Profile.dart';
 
 
@@ -23,6 +25,7 @@ class _HomePage extends State<HomePage>{
   }
   @override
   Widget build(BuildContext context) {
+    //userData=UserService().getUserByEmail(email!);
     return (
        Scaffold(
         body: _options.elementAt(_selectedIndex),
