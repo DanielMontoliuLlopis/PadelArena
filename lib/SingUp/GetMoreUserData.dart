@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:padel_arena/HomePage/HomePage.dart';
-import 'package:padel_arena/LogIn/LogIn.dart';
 import 'package:padel_arena/Model/UserData.dart';
-import 'package:padel_arena/Services/TournamentService.dart';
+import 'package:padel_arena/Services/LoadUser.dart';
 import 'package:padel_arena/Services/UserService.dart';
-import 'package:padel_arena/SingUp/GetMoreUserData.dart';
 import 'package:padel_arena/main.dart';
 
 class GetExtraData extends StatefulWidget {
@@ -126,6 +123,6 @@ class _GetExtraData extends State<GetExtraData> {
       UserData userData=UserData(userController.text.trim(), email!, firstNameController.text, lastNameController.text, "assets/splash.jpg", isChecked);
       UserService userService=UserService();
       userService.saveUser(userData);
-       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage() ), ((route) => false));
+       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoadUser() ), ((route) => false));
   }
 }

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:padel_arena/Model/UserData.dart';
+import 'package:padel_arena/Services/LoadUser.dart';
 import 'package:padel_arena/Services/UserService.dart';
 import 'package:padel_arena/firebase_options.dart';
 import 'OnBoarding/OnBoarding.dart';
 import "HomePage/HomePage.dart";
 import 'package:firebase_core/firebase_core.dart';
+
 
 
 void main() async{
@@ -21,7 +23,7 @@ void main() async{
   runApp(MyApp() );
 }
 String? email="";
-late UserData userData;
+UserData? userData;
 final navigatorKey=GlobalKey<NavigatorState>();
 UserService cosa=UserService();
 class MyApp extends StatelessWidget {
@@ -31,11 +33,10 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder:  (context, snapshot){ 
+        builder:  (context, snapshot)  { 
         if(snapshot.hasData){
           email=snapshot.data!.email;
-          print(UserService().prueba());
-          return HomePage();
+          return LoadUser();
         }else{
           return const OnBoardingScreen();
         }
@@ -43,3 +44,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+

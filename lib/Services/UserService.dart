@@ -30,11 +30,15 @@ class UserService{
    });
    return list;
   }
-prueba () async{
-    UserService().getAllUsersDocuments().then((list)=>{
-        for(UserData u in list ){
-             print(u.email)
-          }
-    });    
+
+  Future<UserData> getUserByEmail (String email) async{
+    List<UserData> list= await UserService().getAllUsersDocuments();
+    UserData? userData;
+    list.forEach((element) {
+      if(email==element.email){
+        userData= element;
+      }
+    });
+    return userData!;
   }
 }

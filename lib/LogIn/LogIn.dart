@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:padel_arena/HomePage/HomePage.dart';
+import 'package:padel_arena/Services/LoadUser.dart';
 import 'package:padel_arena/SingUp/SingUp.dart';
 import 'package:padel_arena/main.dart';
 
@@ -135,7 +136,8 @@ class _LogInState extends State<LogIn>{
         email: emailController.text.trim(), 
         password: passController.text.trim(),
       );
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage() ), ((route) => false));
+      email=emailController.text.trim();
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoadUser() ), ((route) => false));
     } on FirebaseAuthException catch  (e) {
         navigatorKey.currentState!.popUntil((route) => route.isFirst);
     }
