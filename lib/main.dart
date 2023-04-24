@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:padel_arena/Model/TournamentData.dart';
 import 'package:padel_arena/Model/UserData.dart';
 import 'package:padel_arena/Services/LoadUser.dart';
 import 'package:padel_arena/Services/UserService.dart';
@@ -24,6 +25,7 @@ void main() async{
 }
 String? email="";
 UserData? userData;
+List<TournamentData> tournamentsData=[];
 final navigatorKey=GlobalKey<NavigatorState>();
 UserService cosa=UserService();
 class MyApp extends StatelessWidget {

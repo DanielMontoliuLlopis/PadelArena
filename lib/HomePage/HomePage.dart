@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:padel_arena/Services/LoadTournaments.dart';
 import 'package:padel_arena/Services/UserService.dart';
 import 'package:padel_arena/Tournaments/TournamentsList.dart';
 import 'package:padel_arena/main.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatefulWidget{
 class _HomePage extends State<HomePage>{
   int _selectedIndex=0;
   final List <Widget> _options= <Widget>[
-      TournamentsList(),
+      LoadTournaments(),
       Profile(),
   ];
   void _onItemTap(int index){
@@ -25,10 +26,19 @@ class _HomePage extends State<HomePage>{
   }
   @override
   Widget build(BuildContext context) {
-    //userData=UserService().getUserByEmail(email!);
     return (
        Scaffold(
+        appBar: AppBar(
+          title: const Text("Padel Arena"),
+          centerTitle: true,
+        ),
         body: _options.elementAt(_selectedIndex),
+        floatingActionButton: _selectedIndex==0 && userData!.verified==true ? FloatingActionButton(
+                  onPressed: () {
+                    
+                  },
+                  child: const Icon(Icons.add),
+        ):null,
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[BottomNavigationBarItem(icon: Icon(Icons.warning_amber_sharp), label: "Tournaments"),
                   BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Profile")

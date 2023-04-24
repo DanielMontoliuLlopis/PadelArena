@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
     return (Column(
       children: [
         Container(
-          height: 200,
+          height: 100,
         ),
         Container(
           width: Get.width,
