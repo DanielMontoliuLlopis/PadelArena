@@ -19,7 +19,7 @@ class LoadTournaments extends StatelessWidget{
         return const Center(child: CircularProgressIndicator(),);
       }
       tournamentsData=[];
-      snapshot.data!.forEach((element) {
+      snapshot.data?.forEach((element) {
         tournamentsData.add(element);
       });
       return  TournamentsList();

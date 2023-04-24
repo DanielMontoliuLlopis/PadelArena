@@ -8,10 +8,9 @@ import 'package:padel_arena/Model/TournamentData.dart';
 class TournamentService{
 
   final db=FirebaseFirestore.instance;
-  final ref=FirebaseDatabase.instanceFor(app:Firebase.app(), databaseURL: "https://padel-arena-5b4cb-default-rtdb.europe-west1.firebasedatabase.app" ).ref();
 
   saveTournament(TournamentData tournamentData){
-    FirebaseDatabase.instanceFor(app:Firebase.app(), databaseURL: "https://padel-arena-5b4cb-default-rtdb.europe-west1.firebasedatabase.app" ).ref().child('Tournaments').push().set(tournamentData.toMap());
+    db.collection("Tournaments").add(tournamentData.toMap());
   }
 
   Future<List> getAllTournaments() async{

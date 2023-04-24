@@ -5,6 +5,8 @@ import 'package:padel_arena/Tournaments/TournamentsList.dart';
 import 'package:padel_arena/main.dart';
 import 'package:padel_arena/profile/Profile.dart';
 
+import '../Tournaments/CreateTournament.dart';
+
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -33,10 +35,10 @@ class _HomePage extends State<HomePage>{
           centerTitle: true,
         ),
         body: _options.elementAt(_selectedIndex),
-        floatingActionButton: _selectedIndex==0 && userData!.verified==true ? FloatingActionButton(
+        floatingActionButton: _selectedIndex==0  ? FloatingActionButton(
                   onPressed: () {
-                    
-                  },
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreateTournament()));
+                  }, 
                   child: const Icon(Icons.add),
         ):null,
         bottomNavigationBar: BottomNavigationBar(
