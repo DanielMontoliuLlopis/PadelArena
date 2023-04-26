@@ -41,6 +41,7 @@ class _CreateTournament extends State<CreateTournament>{
             ),
               TextFormField(
                 controller: nameController,
+                
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Tournament Name',
@@ -52,35 +53,65 @@ class _CreateTournament extends State<CreateTournament>{
                 }
               ),
               const SizedBox(
-              height: 40,
+              height: 20,
               ),
                TextFormField(
                 controller: startDateController,
+                readOnly: true,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Start date',
 
                 ),
-                validator: (String? input){
-                  DateTime date= DateTime.parse(input!);
-                  if(date.isBefore(DateTime.now())){
-                      return "The start date can´t be before now";
+                onTap: () async {
+                  DateTime? pickedDate=await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2101));
+                  if(pickedDate != null ){
+                      
+                      String formattedDate = pickedDate.toString();
+                      setState(() {
+                         startDateController.text = formattedDate; 
+                      });
                   }
+                },
+                validator: (String? input){
+                   if(input==null){
+                      return "The final date can´t be null";
+                  }
+                  
                 }
+              ),
+               const SizedBox(
+                  height: 20,
               ),
                TextFormField(
                 controller: finalDateController,
+                readOnly: true,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Final date',
 
                 ),
+                onTap: () async {
+                  DateTime? pickedDate=await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2101));
+                  if(pickedDate != null ){
+                      
+                      String formattedDate = pickedDate.toString();
+                      setState(() {
+                         finalDateController.text = formattedDate; 
+                      });
+                  }
+                },
                 validator: (String? input){
-                  DateTime date= DateTime.parse(input!);
-                  if(date.isBefore(DateTime.now())){
-                      return "The final date can´t be before now";
+                  
+                  if(input==null){
+                      return "The final date can´t be null";
+                  }
+                  DateTime date= DateTime.parse(startDateController.text!);
+                  DateTime finalDate= DateTime.parse(input!);
+                  if(date.isAfter(finalDate)){
+                      return "The start date can´t be before start date";
                   }
                 }
               ),
