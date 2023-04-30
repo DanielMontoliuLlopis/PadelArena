@@ -18,6 +18,8 @@ class _CreateTournament extends State<CreateTournament>{
   final nameController=TextEditingController();
   final startDateController=TextEditingController();
   final finalDateController=TextEditingController();
+  final locationController=TextEditingController();
+  final descriptionController=TextEditingController();
   bool firstCategory=false;
   bool secondCategory=false;
   bool thirdCategory=false;
@@ -32,12 +34,12 @@ class _CreateTournament extends State<CreateTournament>{
           centerTitle: true,
           title: const Text("New Tournament"),
       ),
-        body: Form(
+        body: SingleChildScrollView(child: Form(
           key: _formKey,
           child:
            Column(children:  [
             const SizedBox(
-              height: 80,
+              height: 40,
             ),
               TextFormField(
                 controller: nameController,
@@ -106,12 +108,28 @@ class _CreateTournament extends State<CreateTournament>{
                 validator: (String? input){
                   
                   if(input==null){
-                      return "The final date can´t be null";
+                      return "The final date can not be null";
                   }
                   DateTime date= DateTime.parse(startDateController.text!);
                   DateTime finalDate= DateTime.parse(input!);
                   if(date.isAfter(finalDate)){
-                      return "The start date can´t be before start date";
+                      return "The start date can not be before start date";
+                  }
+                }
+              ),
+               const SizedBox(
+                  height: 20,
+              ),
+              TextFormField(
+                controller: locationController,
+                
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Location',
+                ),
+                validator: (String? input){
+                  if(input!.isEmpty){
+                      return "The location can not be empty";
                   }
                 }
               ),
@@ -135,7 +153,7 @@ class _CreateTournament extends State<CreateTournament>{
               },
                 controlAffinity: ListTileControlAffinity.leading,  
               ),
-                            CheckboxListTile(
+               CheckboxListTile(
                 title: const Text("Third Category"),
                 value: thirdCategory,
                 onChanged: (newValue) {
@@ -144,6 +162,19 @@ class _CreateTournament extends State<CreateTournament>{
                 });
               },
                 controlAffinity: ListTileControlAffinity.leading,  
+              ),
+              const SizedBox(
+              height: 40,
+              ),
+              TextFormField(
+                controller: descriptionController,
+                minLines: 3,
+                maxLines: 5 ,
+                
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Description',
+                ),
               ),
               const SizedBox(
               height: 40,
@@ -176,6 +207,7 @@ class _CreateTournament extends State<CreateTournament>{
               ),
           ],)
         ),
+        )
     )
     );
   }
@@ -186,7 +218,7 @@ class _CreateTournament extends State<CreateTournament>{
     if(thirdCategory) categories.add(3);
     DateTime startDate= DateTime.parse(startDateController.text);
     DateTime finalDate= DateTime.parse(finalDateController.text);
-    TournamentData tournamentData=TournamentData(categories, Timestamp.now() , Timestamp.now(), nameController.text, userData?.userName, [], "");
+    TournamentData tournamentData=TournamentData(categories, Timestamp.now() , Timestamp.now(), nameController.text, userData?.userName, [], "", locationController.text, descriptionController.text);
     TournamentService().saveTournament(tournamentData);
     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage() ), ((route) => false));
 

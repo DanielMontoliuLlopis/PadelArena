@@ -10,8 +10,11 @@ class TournamentData{
   String? organizer;
   List<dynamic>? players; 
   String? urlImage;
+  String? location;
+  String? description;
+  bool expanded=false;
 
-  TournamentData(this.categories, this.finalDate, this.startDate, this.name, this.organizer, this.players, this.urlImage);
+  TournamentData(this.categories, this.finalDate, this.startDate, this.name, this.organizer, this.players, this.urlImage, this.location, this.description);
 
   TournamentData.constructorFromMap(Map<String, dynamic> params) {
     categories = params['categories']!;
@@ -21,6 +24,8 @@ class TournamentData{
     urlImage = params['url_image']!;
     organizer = params['organizer']!;
     players=params['players']!;
+    location=params['location']!;
+    description=params['description']!;
   }
 
   Map<String, dynamic> toMap(){
@@ -31,7 +36,9 @@ class TournamentData{
       'name':name,
       'url_image':urlImage,
       'organizer':organizer,
-      'players': players
+      'players': players,
+      'location':location,
+      'description':description
 
     };
     return value;
