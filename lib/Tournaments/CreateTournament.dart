@@ -106,12 +106,11 @@ class _CreateTournament extends State<CreateTournament>{
                   }
                 },
                 validator: (String? input){
-                  
                   if(input==null){
                       return "The final date can not be null";
                   }
-                  DateTime date= DateTime.parse(startDateController.text!);
-                  DateTime finalDate= DateTime.parse(input!);
+                  DateTime date= DateTime.parse(startDateController.text);
+                  DateTime finalDate= DateTime.parse(input);
                   if(date.isAfter(finalDate)){
                       return "The start date can not be before start date";
                   }
@@ -128,7 +127,7 @@ class _CreateTournament extends State<CreateTournament>{
                   labelText: 'Location',
                 ),
                 validator: (String? input){
-                  if(input!.isEmpty){
+                  if(input==""){
                       return "The location can not be empty";
                   }
                 }

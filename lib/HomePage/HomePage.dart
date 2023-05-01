@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:padel_arena/Services/LoadTournaments.dart';
-import 'package:padel_arena/Services/UserService.dart';
-import 'package:padel_arena/Tournaments/TournamentsList.dart';
-import 'package:padel_arena/main.dart';
+import 'package:padel_arena/Tournaments/MyTournaments.dart';
 import 'package:padel_arena/profile/Profile.dart';
 
 import '../Tournaments/CreateTournament.dart';
@@ -19,6 +17,7 @@ class _HomePage extends State<HomePage>{
   int _selectedIndex=0;
   final List <Widget> _options= <Widget>[
       LoadTournaments(),
+      MyTournaments(),
       Profile(),
   ];
   void _onItemTap(int index){
@@ -43,6 +42,7 @@ class _HomePage extends State<HomePage>{
         ):null,
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[BottomNavigationBarItem(icon: Icon(Icons.warning_amber_sharp), label: "Tournaments"),
+                  BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: "My Tournaments"),
                   BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Profile")
           ],
           onTap: _onItemTap,
