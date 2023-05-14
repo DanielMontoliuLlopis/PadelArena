@@ -13,14 +13,6 @@ class UserService{
     db.collection("Users").add(user.toMap());
   }
 
-  /*getUserByName(String name) async{
-    DataSnapshot snapshot=await ref.child('Users/$name').get();
-    if(snapshot.exists){
-      UserData userData=UserData.constructorFromMap(snapshot.value);
-      return userData;
-    }
-  }*/
-
   getAllUsersDocuments() async{
     List<UserData> list=[];
    await db.collection("Users").get().then((event) => {
@@ -31,14 +23,13 @@ class UserService{
    return list;
   }
 
-  Future<UserData> getUserByEmail (String email) async{
-    List<UserData> list= await UserService().getAllUsersDocuments();
-    UserData? userData;
-    list.forEach((element) {
-      if(email==element.email){
-        userData= element;
+Future<UserData> getUserByEmail (String email) async{
+  UserData? userData;
+    await db.collection("Users").where('email', isEqualTo: email).get().then((event) => {
+      for(var co in event.docs){
+        userData=UserData.constructorFromMap(co.data())
       }
-    });
+   });
     return userData!;
   }
 }

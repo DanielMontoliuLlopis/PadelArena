@@ -39,11 +39,6 @@ class _GetExtraData extends State<GetExtraData> {
                   border: OutlineInputBorder(),
                   labelText: 'UserName',
                 ),
-                validator: (String? input) {
-                  if (false) {
-                    return "Not availabel user";
-                  }
-                },
               ),
               const SizedBox(
                 height: 40,

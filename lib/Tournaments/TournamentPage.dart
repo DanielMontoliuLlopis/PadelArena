@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:padel_arena/Model/TournamentData.dart';
 import 'package:padel_arena/main.dart';
 
+import 'TournamentRegistrationPage.dart';
+
 class TournamentPage extends StatelessWidget {
   TournamentData tournament;
   bool isInscribed=false;
@@ -72,14 +74,15 @@ class TournamentPage extends StatelessWidget {
         ),
        
       ]),
-      floatingActionButton: tournament.organizer != userData?.userName!
-          ? FloatingActionButton(
+      floatingActionButton:  FloatingActionButton(
               onPressed: () {
-                
+                 Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                          TournamentRegistrationPage(tournament)));
               },
               child: const Icon(Icons.add),
             )
-          : null,
+          ,
     );
   }
 }

@@ -1,8 +1,6 @@
-// ignore_for_file: avoid_print
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:padel_arena/Model/TournamentData.dart';
 
 class TournamentService{
@@ -17,9 +15,14 @@ class TournamentService{
     List<TournamentData> list=[];
    await db.collection("Tournaments").get().then((event) => {
       for(var co in event.docs){
-        list.add(TournamentData.constructorFromMap(co.data()))
+        list.add(TournamentData.constructorFromMap(co.data(), co.id))
       }
    });
    return list;
+  }
+
+  void updateTournament(TournamentData tournamentData) {
+
+    db.collection("Tournaments").doc(tournamentData.id).update(tournamentData.toMap());
   }
 }

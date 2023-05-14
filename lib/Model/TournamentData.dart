@@ -13,10 +13,11 @@ class TournamentData{
   String? location;
   String? description;
   bool expanded=false;
+  String? id;
 
   TournamentData(this.categories, this.finalDate, this.startDate, this.name, this.organizer, this.players, this.urlImage, this.location, this.description);
 
-  TournamentData.constructorFromMap(Map<String, dynamic> params) {
+  TournamentData.constructorFromMap(Map<String, dynamic> params, String this.id) {
     categories = params['categories']!;
     finalDate = params['final_date']!;
     startDate = params['start_date']!;
