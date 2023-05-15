@@ -1,35 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:padel_arena/Model/TournamentData.dart';
+import 'package:padel_arena/View/Tournaments/TournamentPage.dart';
 import 'package:padel_arena/main.dart';
 
-import 'TournamentPage.dart';
-
-class MyTournaments extends StatefulWidget{
-  const MyTournaments({super.key});
-
+class TournamentsList extends StatefulWidget {
   @override
-  _MyTournaments createState()=>_MyTournaments();
+  State<StatefulWidget> createState() => _TournamentsList();
 }
 
-class _MyTournaments extends State<MyTournaments>{
-  List<TournamentData> myTournamentsData=[];
-  
-  @override
-  initState(){
-    tournamentsData.forEach((element) {
-      element.players!.forEach((element1) {
-        if(element1["player1"] ==userData!.userName || element1["player2"] ==userData!.userName ){
-          myTournamentsData.add(element);
-        }
-      });
-    });
-  }
-
+class _TournamentsList extends State<TournamentsList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: myTournamentsData.isNotEmpty ? ListView.builder(
-          itemCount: myTournamentsData.length,
+      child: ListView.builder(
+          itemCount: tournamentsData.length,
           itemBuilder: (context, position) {
             return Card(
                 borderOnForeground: true,
@@ -37,11 +20,11 @@ class _MyTournaments extends State<MyTournaments>{
                   contentPadding: EdgeInsets.all(10),
                   tileColor: Colors.amber,
                   title: Text(
-                    myTournamentsData[position].name!.toUpperCase(),
-                    style: const TextStyle(letterSpacing: 2, height: 0.5),
+                    tournamentsData[position].name!.toUpperCase(),
+                    style: const  TextStyle(letterSpacing: 2, height: 0.5),
                   ),
                   trailing: IconButton(
-                    icon: myTournamentsData[position].expanded
+                    icon: tournamentsData[position].expanded
                         ? const Icon(Icons.keyboard_arrow_up_sharp)
                         : const Icon(Icons.keyboard_arrow_down_sharp),
                     onPressed: () => {
@@ -50,7 +33,7 @@ class _MyTournaments extends State<MyTournaments>{
                                 !tournamentsData[position].expanded
                           })
                     },
-                    padding:const EdgeInsets.all(6.0),
+                    padding: EdgeInsets.all(6.0),
                   ),
                   onTap: () => {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -64,7 +47,7 @@ class _MyTournaments extends State<MyTournaments>{
                               child: Column(
                             children: [
                               Text(
-                                  "${tournamentsData[position].description}\n"),
+                                  "${tournamentsData[position].location}\n"),
                               Text(
                                   "From ${tournamentsData[position].startDate?.toDate().day}/${tournamentsData[position].startDate?.toDate().month}/"
                                   "${tournamentsData[position].startDate?.toDate().year} to ${tournamentsData[position].finalDate?.toDate().day}/"
@@ -76,10 +59,7 @@ class _MyTournaments extends State<MyTournaments>{
                           height: 0,
                         ),
                 ));
-          }): const  Center(
-            child: Text("You are not registered for any tournament"),
-        ),
+          }),
     );
-    }
+  }
 }
-  

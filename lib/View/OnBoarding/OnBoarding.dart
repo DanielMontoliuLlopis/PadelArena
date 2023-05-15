@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:padel_arena/LogIn/LogIn.dart';
+import 'package:padel_arena/View/LogIn/LogIn.dart';
 
 
 import 'OnBoardingModel.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:padel_arena/HomePage/HomePage.dart';
-import 'package:padel_arena/LogIn/LogIn.dart';
-import 'package:padel_arena/SingUp/GetMoreUserData.dart';
+import 'package:padel_arena/View/HomePage/HomePage.dart';
+import 'package:padel_arena/View/LogIn/LogIn.dart';
+import 'package:padel_arena/View/SingUp/GetMoreUserData.dart';
 import 'package:padel_arena/main.dart';
 
 class SingUp extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:padel_arena/Services/TournamentService.dart';
-import 'package:padel_arena/Tournaments/TournamentsList.dart';
+import 'package:padel_arena/View/Tournaments/TournamentsList.dart';
 import '../main.dart';
 
 

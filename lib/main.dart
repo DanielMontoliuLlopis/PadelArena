@@ -7,8 +7,8 @@ import 'package:padel_arena/Model/UserData.dart';
 import 'package:padel_arena/Services/LoadUser.dart';
 import 'package:padel_arena/Services/UserService.dart';
 import 'package:padel_arena/firebase_options.dart';
-import 'OnBoarding/OnBoarding.dart';
-import "HomePage/HomePage.dart";
+import 'View/OnBoarding/OnBoarding.dart';
+import 'View/HomePage/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
