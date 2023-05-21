@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:padel_arena/generated/l10n.dart';
 
 
 class OnBoard {
@@ -15,7 +16,7 @@ class OnBoard {
  final List<OnBoard> demoData = [
   OnBoard(
     image: "assets/splash.jpg",
-    title: "Title 01",
+    title: S.current.titleOnboarding01,
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   ),

@@ -22,7 +22,10 @@ class TournamentService{
   }
 
   void updateTournament(TournamentData tournamentData) {
-
     db.collection("Tournaments").doc(tournamentData.id).update(tournamentData.toMap());
+  }
+
+  void deleteTournament(TournamentData tournamentData){
+    db.collection("Tournaments").doc(tournamentData.id).delete();
   }
 }

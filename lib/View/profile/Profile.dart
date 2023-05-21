@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:padel_arena/LogIn/LogIn.dart';
+import 'package:padel_arena/View/LogIn/LogIn.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 import 'package:get/get.dart';
 
-import '../HomePage/HomePage.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -46,7 +45,7 @@ class _ProfileState extends State<Profile> {
               border: Border.all(
             width: 2,
           )),
-          child: Center(child: Text("User: ${userData?.userName}")),
+          child: Center(child: Text("${S.current.userName}: ${userData?.userName}")),
         ),
         Container(
           height: 50,
@@ -75,7 +74,7 @@ class _ProfileState extends State<Profile> {
               border: Border.all(
             width: 2,
           )),
-          child: Center(child: Text("Email: ${userData?.email}")),
+          child: Center(child: Text("${S.current.email}: ${userData?.email}")),
         ),
         Container(
           height: 50,
@@ -106,7 +105,7 @@ class _ProfileState extends State<Profile> {
               )),
           child: Center(
               child:
-                  Text("Nombre: ${userData?.firstName} ${userData?.lastName}")),
+                  Text("${S.current.name}: ${userData?.firstName} ${userData?.lastName}")),
         ),
         Container(
           height: 100,
@@ -123,10 +122,10 @@ class _ProfileState extends State<Profile> {
               color: Colors.red,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Center(
+            child:  Center(
               child: Text(
-                "Log Out",
-                style: TextStyle(
+                S.current.logOut,
+                style: const TextStyle(
                   fontFamily: "HappyMonkey",
                   color: Colors.white,
                   fontSize: 18,

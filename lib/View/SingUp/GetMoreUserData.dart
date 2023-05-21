@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:padel_arena/HomePage/HomePage.dart';
 import 'package:padel_arena/Model/UserData.dart';
 import 'package:padel_arena/Services/LoadUser.dart';
 import 'package:padel_arena/Services/UserService.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
 class GetExtraData extends StatefulWidget {
@@ -24,7 +24,7 @@ class _GetExtraData extends State<GetExtraData> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text("Extra User Data"),
+        title:  Text(S.current.extraUserDataTitle),
       ),
       body: Form(
           key: _formKey,
@@ -35,9 +35,9 @@ class _GetExtraData extends State<GetExtraData> {
               ),
               TextFormField(
                 controller: userController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'UserName',
+                decoration:  InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: S.current.userName,
                 ),
               ),
               const SizedBox(
@@ -45,13 +45,13 @@ class _GetExtraData extends State<GetExtraData> {
               ),
               TextFormField(
                 controller: firstNameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'First Name',
+                decoration:  InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: S.current.firtsName, 
                 ),
                 validator: (String? input){
                   if(input!.isEmpty){
-                      return "Can not be empty";
+                      return S.current.emptyError;
                   }
                 }
               ),
@@ -60,13 +60,13 @@ class _GetExtraData extends State<GetExtraData> {
               ),
               TextFormField(
                 controller: lastNameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Last Name',
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: S.current.lastName,
                 ),
                 validator: (String? input){
                   if(input!.isEmpty){
-                      return "Can not be empty";
+                      return S.current.emptyError;
                   }
                 }
               ),
@@ -78,7 +78,7 @@ class _GetExtraData extends State<GetExtraData> {
                   Checkbox(value: isChecked , onChanged:(value)=>{
                     setState(() => isChecked=value!,)
                   }),
-                  const Text("Do you want to publish tournaments?")
+                   Text(S.current.publishTournaments)
                 ],
               ),
               const SizedBox(
@@ -98,10 +98,10 @@ class _GetExtraData extends State<GetExtraData> {
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child:  Center(
                     child: Text(
-                      "Continue",
-                      style: TextStyle(
+                      S.current.continuee,
+                      style: const TextStyle(
                         fontFamily: "HappyMonkey",
                         color: Colors.white,
                         fontSize: 18,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:padel_arena/View/HomePage/HomePage.dart';
 import 'package:padel_arena/View/LogIn/LogIn.dart';
 import 'package:padel_arena/View/SingUp/GetMoreUserData.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
 class SingUp extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SingUpState extends State<SingUp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text("Saludos"),
+        title:  Text(S.current.loginButton),
       ),
       body: Form(
           key: _formKey,
@@ -35,13 +35,13 @@ class _SingUpState extends State<SingUp> {
               ),
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.email,
                 ),
                 validator: (String? input) {
                   if (!input!.contains('@')) {
-                    return "Invalid email";
+                    return S.current.emailError;
                   }
                 },
               ),
@@ -50,16 +50,16 @@ class _SingUpState extends State<SingUp> {
               ),
               TextFormField(
                 controller: passController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+                decoration:  InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: S.current.password,
                 ),
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 validator: (String? input){
                   if(input!.length<6){
-                      return "Invalid password";
+                      return S.current.passwordError;
                   }
                 }
               ),
@@ -68,16 +68,16 @@ class _SingUpState extends State<SingUp> {
               ),
               TextFormField(
                 controller: passRepeatedController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Repeat your password',
+                decoration:  InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: S.current.repeatPassword,
                 ),
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 validator: (String? input){
                   if(input!=passController.text.trim()){
-                      return "Diferent password";
+                      return S.current.diferentPassword;
                   }
                 }
               ),
@@ -98,10 +98,10 @@ class _SingUpState extends State<SingUp> {
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child:  Center(
                     child: Text(
-                      "SingUp",
-                      style: TextStyle(
+                      S.current.singUp,
+                      style:const TextStyle(
                         fontFamily: "HappyMonkey",
                         color: Colors.white,
                         fontSize: 18,
@@ -120,10 +120,10 @@ class _SingUpState extends State<SingUp> {
                   margin: const EdgeInsets.only(bottom: 30),
                   height: Get.height * 0.035,
                   width: Get.width,
-                  child: const Center(
+                  child:  Center(
                     child: Text(
-                      "You have account? Log In",
-                      style: TextStyle(
+                      S.current.haveAccount, 
+                      style:const TextStyle(
                         fontFamily: "HappyMonkey",
                         color: Color.fromARGB(255, 100, 99, 99),
                         fontSize: 18,
@@ -153,8 +153,6 @@ class _SingUpState extends State<SingUp> {
             MaterialPageRoute(builder: (context) => GetExtraData()),
             ((route) => false));
       } on FirebaseAuthException catch (e) {
-        print('Failed with error code: ${e.code}');
-        print(e.message);
         navigatorKey.currentState!.popUntil((route) => route.isFirst);
       }
   }

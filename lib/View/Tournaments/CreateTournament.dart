@@ -2,10 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:padel_arena/HomePage/HomePage.dart';
+import 'package:padel_arena/View/HomePage/HomePage.dart';
 import 'package:padel_arena/Model/TournamentData.dart';
 import 'package:padel_arena/Services/LoadTournaments.dart';
 import 'package:padel_arena/Services/TournamentService.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
 class CreateTournament extends StatefulWidget{
@@ -32,7 +33,7 @@ class _CreateTournament extends State<CreateTournament>{
       home:Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("New Tournament"),
+          title:  Text(S.current.newTournament),
       ),
         body: SingleChildScrollView(child: Form(
           key: _formKey,
@@ -44,13 +45,13 @@ class _CreateTournament extends State<CreateTournament>{
               TextFormField(
                 controller: nameController,
                 
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Tournament Name',
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.tournamentName,
                 ),
                 validator: (String? input){
                   if(input!.isEmpty){
-                      return "The name can not be empty";
+                      return S.current.emptyError;
                   }
                 }
               ),
@@ -61,9 +62,9 @@ class _CreateTournament extends State<CreateTournament>{
                 controller: startDateController,
                 readOnly: true,
                 keyboardType: TextInputType.datetime,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Start date',
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.startDate,
 
                 ),
                 onTap: () async {
@@ -78,7 +79,7 @@ class _CreateTournament extends State<CreateTournament>{
                 },
                 validator: (String? input){
                    if(input==null){
-                      return "The final date can´t be null";
+                      return S.current.emptyError;
                   }
                   
                 }
@@ -90,9 +91,9 @@ class _CreateTournament extends State<CreateTournament>{
                 controller: finalDateController,
                 readOnly: true,
                 keyboardType: TextInputType.datetime,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Final date',
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.finalDate,
 
                 ),
                 onTap: () async {
@@ -107,12 +108,12 @@ class _CreateTournament extends State<CreateTournament>{
                 },
                 validator: (String? input){
                   if(input==null){
-                      return "The final date can not be null";
+                      return S.current.emptyError;
                   }
                   DateTime date= DateTime.parse(startDateController.text);
                   DateTime finalDate= DateTime.parse(input);
                   if(date.isAfter(finalDate)){
-                      return "The start date can not be before start date";
+                      return S.current.dateError;
                   }
                 }
               ),
@@ -122,18 +123,18 @@ class _CreateTournament extends State<CreateTournament>{
               TextFormField(
                 controller: locationController,
                 
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Location',
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.location,
                 ),
                 validator: (String? input){
                   if(input==""){
-                      return "The location can not be empty";
+                      return S.current.emptyError;
                   }
                 }
               ),
               CheckboxListTile(
-                title: const Text("First Category"),
+                title:  Text(S.current.firtsCategory),
                 value: firstCategory,
                 onChanged: (newValue) {
                   setState(() {
@@ -143,7 +144,7 @@ class _CreateTournament extends State<CreateTournament>{
                 controlAffinity: ListTileControlAffinity.leading,  
               ),
               CheckboxListTile(
-                title: const Text("Second Category"),
+                title:  Text(S.current.secondCategory),
                 value: secondCategory,
                 onChanged: (newValue) {
                   setState(() {
@@ -153,7 +154,7 @@ class _CreateTournament extends State<CreateTournament>{
                 controlAffinity: ListTileControlAffinity.leading,  
               ),
                CheckboxListTile(
-                title: const Text("Third Category"),
+                title:  Text(S.current.thirdCategory),
                 value: thirdCategory,
                 onChanged: (newValue) {
                   setState(() {
@@ -170,9 +171,9 @@ class _CreateTournament extends State<CreateTournament>{
                 minLines: 3,
                 maxLines: 5 ,
                 
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Description',
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.description,
                 ),
               ),
               const SizedBox(
@@ -192,10 +193,10 @@ class _CreateTournament extends State<CreateTournament>{
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(10),
                 ),
-                child:const  Center(
+                child:  Center(
                   child: Text(
-                    "Create Tournament",
-                    style: TextStyle(
+                    S.current.createTournament,
+                    style:const TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Colors.white,
                       fontSize: 18,

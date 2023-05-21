@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:padel_arena/Model/TournamentData.dart';
+import 'package:padel_arena/Services/TournamentService.dart';
+import 'package:padel_arena/View/HomePage/HomePage.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
 import 'TournamentRegistrationPage.dart';
@@ -40,7 +43,7 @@ class TournamentPage extends StatelessWidget {
               border: Border.all(
                 width: 2,
               )),
-          child: Text("Description : \n ${tournament.description}"),
+          child: Text("${S.current.description} : \n ${tournament.description}"),
         ),
         ),
         const SizedBox(
@@ -54,7 +57,7 @@ class TournamentPage extends StatelessWidget {
               border: Border.all(
                 width: 2,
               )),
-          child: Text("Location : ${tournament.location}" , textAlign: TextAlign.center,),
+          child: Text("${S.current.location} : ${tournament.location}" , textAlign: TextAlign.center,),
         ),
         const SizedBox(
           height: 30,
@@ -68,19 +71,26 @@ class TournamentPage extends StatelessWidget {
                 width: 2,
               )),
           child:  Text(
-            "From ${tournament.startDate?.toDate().day}/${tournament.startDate?.toDate().month}/"
-            "${tournament.startDate?.toDate().year} to ${tournament.finalDate?.toDate().day}/"
+            "${S.current.from} ${tournament.startDate?.toDate().day}/${tournament.startDate?.toDate().month}/"
+            "${tournament.startDate?.toDate().year} ${S.current.to} ${tournament.finalDate?.toDate().day}/"
             "${tournament.finalDate?.toDate().month}/${tournament.finalDate?.toDate().year}", textAlign: TextAlign.center,),
         ),
        
       ]),
-      floatingActionButton:  FloatingActionButton(
+      floatingActionButton:tournament.organizer!=userData?.userName ? FloatingActionButton(
               onPressed: () {
                  Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
                           TournamentRegistrationPage(tournament)));
               },
               child: const Icon(Icons.add),
+            ): FloatingActionButton(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                TournamentService().deleteTournament(tournament);
+                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage() ), ((route) => false));
+              },
+              child: const Icon(Icons.delete_forever),
             )
           ,
     );

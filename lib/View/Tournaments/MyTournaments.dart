@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:padel_arena/Model/TournamentData.dart';
 import 'package:padel_arena/main.dart';
 
+import '../../generated/l10n.dart';
 import 'TournamentPage.dart';
 
 class MyTournaments extends StatefulWidget{
@@ -66,8 +67,8 @@ class _MyTournaments extends State<MyTournaments>{
                               Text(
                                   "${myTournamentsData[position].description}\n"),
                               Text(
-                                  "From ${myTournamentsData[position].startDate?.toDate().day}/${myTournamentsData[position].startDate?.toDate().month}/"
-                                  "${myTournamentsData[position].startDate?.toDate().year} to ${myTournamentsData[position].finalDate?.toDate().day}/"
+                                  "${S.current.from} ${myTournamentsData[position].startDate?.toDate().day}/${myTournamentsData[position].startDate?.toDate().month}/"
+                                  "${myTournamentsData[position].startDate?.toDate().year} ${S.current.to} ${myTournamentsData[position].finalDate?.toDate().day}/"
                                   "${myTournamentsData[position].finalDate?.toDate().month}/${myTournamentsData[position].finalDate?.toDate().year}")
                             ],
                           )),
@@ -76,8 +77,8 @@ class _MyTournaments extends State<MyTournaments>{
                           height: 0,
                         ),
                 ));
-          }): const  Center(
-            child: Text("You are not registered for any tournament"),
+          }):   Center(
+            child: Text(S.current.nonTournaments),
         ),
     );
     }

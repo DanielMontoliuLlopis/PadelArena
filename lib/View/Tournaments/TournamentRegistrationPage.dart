@@ -2,14 +2,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:padel_arena/HomePage/HomePage.dart';
+import 'package:padel_arena/View/HomePage/HomePage.dart';
 import 'package:padel_arena/Model/TournamentData.dart';
 import 'package:padel_arena/Services/LoadTournaments.dart';
 import 'package:padel_arena/Services/UserService.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
-import '../Model/UserData.dart';
-import '../Services/TournamentService.dart';
+import '../../Model/UserData.dart';
+import '../../Services/TournamentService.dart';
 
 class TournamentRegistrationPage extends StatefulWidget{
 
@@ -35,7 +36,7 @@ class _TournamentRegistrationPage extends State<TournamentRegistrationPage>{
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text("Extra User Data"),
+        title:  Text(S.current.titleTournamentRegistration),
       ),
       body: Form(
           key: _formKey,
@@ -50,13 +51,13 @@ class _TournamentRegistrationPage extends State<TournamentRegistrationPage>{
               items: tournamentData.categories?.map((dynamic items) {
                 return DropdownMenuItem(
                   value: items,
-                  child: Text("Category $items"),
+                  child: Text("${S.current.category} $items"),
                 );
               }).toList(),
               onChanged: (value) => selectedCategory=value,
               validator: (value) {
                 if(value==null){
-                  return "Category can not be empty";
+                  return "${S.current.emptyCategory} ";
                 }
               }
             
@@ -77,17 +78,14 @@ class _TournamentRegistrationPage extends State<TournamentRegistrationPage>{
               ),
               TextFormField(
                 controller: userController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Player 2",
-                  hintText: "Email of player 2",
+                decoration:  InputDecoration(
+                  border:const OutlineInputBorder(),
+                  labelText: S.current.player2,
+                  hintText: S.current.emailPlayer2,
                 ),
                 validator: (String? input){
-                  bool exist=true;
-                  UserService().getUserByEmail(input!.trim()).then((value) => {
-                    if(value.email!=input) exist=false
-                  });
-                  if(!exist) return "The user email was not found";
+                 
+                   if(input==null) return S.current.emptyError;
                   return null;
                 }
               ),
@@ -109,10 +107,10 @@ class _TournamentRegistrationPage extends State<TournamentRegistrationPage>{
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child:  Center(
                     child: Text(
-                      "Continue",
-                      style: TextStyle(
+                      S.current.continuee,
+                      style:const TextStyle(
                         fontFamily: "HappyMonkey",
                         color: Colors.white,
                         fontSize: 18,

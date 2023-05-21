@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:padel_arena/View/Tournaments/TournamentPage.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
 class TournamentsList extends StatefulWidget {
@@ -49,8 +50,8 @@ class _TournamentsList extends State<TournamentsList> {
                               Text(
                                   "${tournamentsData[position].location}\n"),
                               Text(
-                                  "From ${tournamentsData[position].startDate?.toDate().day}/${tournamentsData[position].startDate?.toDate().month}/"
-                                  "${tournamentsData[position].startDate?.toDate().year} to ${tournamentsData[position].finalDate?.toDate().day}/"
+                                  "${S.current.from} ${tournamentsData[position].startDate?.toDate().day}/${tournamentsData[position].startDate?.toDate().month}/"
+                                  "${tournamentsData[position].startDate?.toDate().year} ${S.current.to} ${tournamentsData[position].finalDate?.toDate().day}/"
                                   "${tournamentsData[position].finalDate?.toDate().month}/${tournamentsData[position].finalDate?.toDate().year}")
                             ],
                           )),

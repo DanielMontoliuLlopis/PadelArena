@@ -3,10 +3,9 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:padel_arena/HomePage/HomePage.dart';
 import 'package:padel_arena/Services/LoadUser.dart';
-import 'package:padel_arena/SingUp/SingUp.dart';
+import 'package:padel_arena/View/SingUp/SingUp.dart';
+import 'package:padel_arena/generated/l10n.dart';
 import 'package:padel_arena/main.dart';
 
 class LogIn extends StatefulWidget{
@@ -28,7 +27,7 @@ class _LogInState extends State<LogIn>{
 
       home:Scaffold(
         appBar: AppBar(
-          title: const Text("Saludos"),
+          title:  Text(S.current.titleLogin),
       ),
         body: Form(
           key: _formKey,
@@ -39,13 +38,13 @@ class _LogInState extends State<LogIn>{
             ),
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
+                decoration:  InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: S.current.email,
                 ),
                 validator: (String? input){
                   if(!input!.contains('@')){
-                      return "Invalid email";
+                      return S.current.emailError; 
                   }
                 }
               ),
@@ -54,9 +53,9 @@ class _LogInState extends State<LogIn>{
               ),
                TextFormField(
                 controller: passController,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Password',
+                  labelText:  S.current.password, 
 
                 ),
                 obscureText: true,
@@ -64,7 +63,7 @@ class _LogInState extends State<LogIn>{
                 autocorrect: false,
                 validator: (String? input){
                   if(input!.length<6){
-                      return "Invalid password";
+                      return S.current.passwordError;  
                   }
                 }
               ),
@@ -86,10 +85,10 @@ class _LogInState extends State<LogIn>{
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(10),
                 ),
-                child:const  Center(
+                child:  Center(
                   child: Text(
-                    "Login",
-                    style: TextStyle(
+                    S.current.login,  
+                    style: const TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Colors.white,
                       fontSize: 18,
@@ -107,10 +106,10 @@ class _LogInState extends State<LogIn>{
                 margin: const EdgeInsets.only(bottom: 30),
                 height: Get.height * 0.035,
                 width: Get.width,
-                child: const Center(
+                child:  Center(
                   child: Text(
-                    "SingUp",
-                    style: TextStyle(
+                    S.current.singUp,
+                    style: const TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Color.fromARGB(255, 100, 99, 99),
                       fontSize: 18,
