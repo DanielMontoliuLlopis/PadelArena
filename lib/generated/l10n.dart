@@ -50,80 +50,80 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Title 01`
+  /// `Creation`
   String get titleOnboarding01 {
     return Intl.message(
-      'Title 01',
+      'Creation',
       name: 'titleOnboarding01',
       desc: '',
       args: [],
     );
   }
 
-  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+  /// `Padel Arena allows verified users to create tournaments.`
   String get textOnboarding01 {
     return Intl.message(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Padel Arena allows verified users to create tournaments.',
       name: 'textOnboarding01',
       desc: '',
       args: [],
     );
   }
 
-  /// `Title 02`
+  /// `Registration`
   String get titleOnboarding02 {
     return Intl.message(
-      'Title 02',
+      'Registration',
       name: 'titleOnboarding02',
       desc: '',
       args: [],
     );
   }
 
-  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+  /// `Padel Arena allows you to register for a tournament with your partner.`
   String get textOnboarding02 {
     return Intl.message(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Padel Arena allows you to register for a tournament with your partner.',
       name: 'textOnboarding02',
       desc: '',
       args: [],
     );
   }
 
-  /// `Title 03`
+  /// `Deletion`
   String get titleOnboarding03 {
     return Intl.message(
-      'Title 03',
+      'Deletion',
       name: 'titleOnboarding03',
       desc: '',
       args: [],
     );
   }
 
-  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+  /// `Padel Arena allows the organizer user to delete tournaments.`
   String get textOnboarding03 {
     return Intl.message(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Padel Arena allows the organizer user to delete tournaments.',
       name: 'textOnboarding03',
       desc: '',
       args: [],
     );
   }
 
-  /// `Title 04`
+  /// `Have Fun!`
   String get titleOnboarding04 {
     return Intl.message(
-      'Title 04',
+      'Have Fun!',
       name: 'titleOnboarding04',
       desc: '',
       args: [],
     );
   }
 
-  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+  /// `Enjoy playing tournaments in your area with your partner.`
   String get textOnboarding04 {
     return Intl.message(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Enjoy playing tournaments in your area with your partner.',
       name: 'textOnboarding04',
       desc: '',
       args: [],

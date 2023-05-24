@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:padel_arena/View/LogIn/LogIn.dart';
+import 'package:padel_arena/generated/l10n.dart';
 
 
 import 'OnBoardingModel.dart';
@@ -106,10 +107,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   color: Colors.purple,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Center(
+                child:  Center(
                   child: Text(
-                    "Login / Registration",
-                    style: TextStyle(
+                    S.current.loginButton,
+                    style: const TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Colors.white,
                       fontSize: 18,
@@ -126,10 +127,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 margin: const EdgeInsets.only(bottom: 48),
                 height: Get.height * 0.075,
                 width: Get.width,
-                child: const Center(
+                child:  Center(
                   child: Text(
-                    "Skip",
-                    style: TextStyle(
+                    S.current.skipButton, 
+                    style: const TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Color.fromARGB(255, 100, 99, 99),
                       fontSize: 18,

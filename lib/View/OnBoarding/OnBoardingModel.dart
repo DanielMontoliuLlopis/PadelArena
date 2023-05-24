@@ -15,28 +15,28 @@ class OnBoard {
 
  final List<OnBoard> demoData = [
   OnBoard(
-    image: "assets/splash.jpg",
+    image: "assets/1.png",
     title: S.current.titleOnboarding01,
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        S.current.textOnboarding01,
   ),
   OnBoard(
-    image: "assets/splash.jpg",
-    title: "Title 02",
+    image: "assets/2.png",
+    title: S.current.titleOnboarding02,
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        S.current.textOnboarding02,
   ),
   OnBoard(
-    image: "assets/splash.jpg",
-    title: "Title 03",
+    image: "assets/3.png",
+    title: S.current.titleOnboarding03,
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        S.current.textOnboarding03,
   ),
   OnBoard(
-    image: "assets/splash.jpg",
-    title: "Title 04",
+    image: "assets/4.png",
+    title: S.current.titleOnboarding04,
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        S.current.textOnboarding04,
   ),
 ];
 

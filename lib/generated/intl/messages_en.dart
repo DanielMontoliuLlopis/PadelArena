@@ -72,20 +72,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
         "startDate": MessageLookupByLibrary.simpleMessage("Start date"),
         "textOnboarding01": MessageLookupByLibrary.simpleMessage(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+            "Padel Arena allows verified users to create tournaments."),
         "textOnboarding02": MessageLookupByLibrary.simpleMessage(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+            "Padel Arena allows you to register for a tournament with your partner."),
         "textOnboarding03": MessageLookupByLibrary.simpleMessage(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+            "Padel Arena allows the organizer user to delete tournaments."),
         "textOnboarding04": MessageLookupByLibrary.simpleMessage(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+            "Enjoy playing tournaments in your area with your partner."),
         "thirdCategory": MessageLookupByLibrary.simpleMessage("Third Category"),
         "title": MessageLookupByLibrary.simpleMessage("Padel Arena"),
         "titleLogin": MessageLookupByLibrary.simpleMessage("Log in Page"),
-        "titleOnboarding01": MessageLookupByLibrary.simpleMessage("Title 01"),
-        "titleOnboarding02": MessageLookupByLibrary.simpleMessage("Title 02"),
-        "titleOnboarding03": MessageLookupByLibrary.simpleMessage("Title 03"),
-        "titleOnboarding04": MessageLookupByLibrary.simpleMessage("Title 04"),
+        "titleOnboarding01": MessageLookupByLibrary.simpleMessage("Creation"),
+        "titleOnboarding02":
+            MessageLookupByLibrary.simpleMessage("Registration"),
+        "titleOnboarding03": MessageLookupByLibrary.simpleMessage("Deletion"),
+        "titleOnboarding04": MessageLookupByLibrary.simpleMessage("Have Fun!"),
         "titleTournamentRegistration":
             MessageLookupByLibrary.simpleMessage("Tournament Registration"),
         "to": MessageLookupByLibrary.simpleMessage("to"),
